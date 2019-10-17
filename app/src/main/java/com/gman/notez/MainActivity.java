@@ -2,7 +2,9 @@ package com.gman.notez;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ArrayAdapter;
+import android.view.View;
 
 import com.mobeta.android.dslv.DragSortController;
 import com.mobeta.android.dslv.DragSortListView;
@@ -42,6 +44,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        Log.d("--- Main", "onCreate()");
+
+
         listView = (DragSortListView) findViewById(R.id.listView);
         // String[] names = getResources().getStringArray(R.array.random_names);
         String[] names = new String[]{"Tr", "In", "Ch", "UA", "US", "UK", "Ca", "Au", "Af"};
@@ -62,6 +67,11 @@ public class MainActivity extends AppCompatActivity {
         listView.setFloatViewManager(controller);
         listView.setOnTouchListener(controller);
         listView.setDragEnabled(true);
+    }
 
+    //// Del Button
+    public void onDelButtonClick(View v){
+        // Log.d("--- Main", "onDelButtonClick()");
+        listView.removeItem(0);
     }
 }
