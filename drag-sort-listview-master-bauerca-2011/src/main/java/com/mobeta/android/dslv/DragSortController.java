@@ -229,7 +229,7 @@ public class DragSortController extends SimpleFloatViewManager implements View.O
             dragFlags |= DragSortListView.DRAG_NEG_X;
         }
 
-        mDragging = mDslv.startDrag(position - mDslv.getHeaderViewsCount(), dragFlags, deltaX,
+        mDragging = mDslv.startDrag(position /*- mDslv.getHeaderViewsCount()*/, dragFlags, deltaX,
                 deltaY);
         return mDragging;
     }
@@ -324,8 +324,8 @@ public class DragSortController extends SimpleFloatViewManager implements View.O
 
         int touchPos = mDslv.pointToPosition(x, y); // includes headers/footers
 
-        final int numHeaders = mDslv.getHeaderViewsCount();
-        final int numFooters = mDslv.getFooterViewsCount();
+        final int numHeaders = /*mDslv.getHeaderViewsCount()*/ 0;
+        final int numFooters = /*mDslv.getFooterViewsCount()*/ 0;
         final int count = mDslv.getCount();
 
         // Log.d("mobeta", "touch down on position " + itemnum);
@@ -429,7 +429,7 @@ public class DragSortController extends SimpleFloatViewManager implements View.O
     public boolean onSingleTapUp(MotionEvent ev) {
         if (mRemoveEnabled && mRemoveMode == CLICK_REMOVE) {
             if (mClickRemoveHitPos != MISS) {
-                mDslv.removeItem(mClickRemoveHitPos - mDslv.getHeaderViewsCount());
+                mDslv.removeItem(mClickRemoveHitPos /*- mDslv.getHeaderViewsCount()*/);
             }
         }
         return true;

@@ -17,6 +17,7 @@
         android:paddingBottom="0dp"
         android:paddingLeft="10dp"
         android:paddingTop="0dp"
+        android:numColumns="2"
         dslv:collapsed_height="2dp"
         dslv:drag_enabled="true"
         dslv:drag_scroll_start="0.33"

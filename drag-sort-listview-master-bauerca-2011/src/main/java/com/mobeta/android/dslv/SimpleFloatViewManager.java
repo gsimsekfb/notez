@@ -4,6 +4,7 @@ import android.graphics.Bitmap;
 import android.graphics.Point;
 import android.graphics.Color;
 import android.widget.ListView;
+import android.widget.GridView;
 import android.widget.ImageView;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,11 +20,11 @@ public class SimpleFloatViewManager implements DragSortListView.FloatViewManager
 
     private ImageView mImageView;
 
-    private int mFloatBGColor = Color.BLACK;
+    private int mFloatBGColor = Color.YELLOW;
 
-    private ListView mListView;
+    private GridView mListView;
 
-    public SimpleFloatViewManager(ListView lv) {
+    public SimpleFloatViewManager(GridView lv) {
         mListView = lv;
     }
 
@@ -39,7 +40,7 @@ public class SimpleFloatViewManager implements DragSortListView.FloatViewManager
     public View onCreateFloatView(int position) {
         // Guaranteed that this will not be null? I think so. Nope, got
         // a NullPointerException once...
-        View v = mListView.getChildAt(position + mListView.getHeaderViewsCount() - mListView.getFirstVisiblePosition());
+        View v = mListView.getChildAt(position /*+ mListView.getHeaderViewsCount()*/ - mListView.getFirstVisiblePosition());
 
         if (v == null) {
             return null;
