@@ -5,6 +5,9 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
+import android.graphics.Color;
 
 import com.mobeta.android.dslv.DragSortController;
 import com.mobeta.android.dslv.DragSortListView;
@@ -49,9 +52,24 @@ public class MainActivity extends AppCompatActivity {
 
         listView = (DragSortListView) findViewById(R.id.listView);
         // String[] names = getResources().getStringArray(R.array.random_names);
-        String[] names = new String[]{"Tr", "In", "Ch", "UA", "US", "UK", "Ca", "Au", "Af"};
+        String[] names = new String[]{"1", "2", "3", "", "5", "6", "7", "8"};
         ArrayList<String> list = new ArrayList<String>(Arrays.asList(names));
-        adapter = new ArrayAdapter<String>(this, R.layout.row_item, R.id.textView, list);
+        adapter = new ArrayAdapter<String>(this, R.layout.row_item, R.id.textView, list){
+            @Override
+            public View getView(int position, View convertView, ViewGroup parent)
+            {
+                View itemView = super.getView(position, convertView, parent);
+                TextView tv = (TextView) itemView.findViewById(R.id.textView);
+                CharSequence cc = tv.getText(); // todo: use var
+                if(cc.length() == 0) {
+                    // itemView.setVisibility(View.GONE);
+                    itemView.setBackgroundColor(Color.LTGRAY);
+                }
+
+                return itemView;
+            }
+        };
+
         listView.setAdapter(adapter);
         listView.setDropListener(onDrop);
         listView.setRemoveListener(onRemove);
